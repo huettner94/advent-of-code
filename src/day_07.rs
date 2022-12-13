@@ -1,3 +1,5 @@
+use itertools::Itertools;
+
 use crate::common::read_file_to_lines;
 
 #[derive(Debug)]
@@ -50,17 +52,13 @@ impl Element {
 
     fn get_by_path(&mut self, mut path: Vec<String>) -> Option<&mut Element> {
         assert!(!path.is_empty());
+        if path.len() == 1 && &path[0] == self.get_name() {
+            return Some(self);
+        }
         match self {
-            Element::File { name, size: _ } => {
-                if path.len() == 1 && &path[0] == name {
-                    Some(self)
-                } else {
-                    None
-                }
-            }
             Element::Directory { name, elements } => {
                 if &path[0] == name {
-                    path.pop();
+                    path.remove(0);
                     for e in elements {
                         if &path[0] == e.get_name() {
                             return e.get_by_path(path);
@@ -69,10 +67,11 @@ impl Element {
                 }
                 None
             }
+            Element::File { name: _, size: _ } => None,
         }
     }
 
-    fn parse_from_string(mut lines: Vec<String>) -> Element {
+    fn parse_from_string(lines: Vec<String>) -> Element {
         let mut path: Vec<String> = vec![String::new()];
         let mut root = Element::new_dir(String::new());
         let mut lineiter = lines.iter().peekable();
@@ -89,7 +88,7 @@ impl Element {
                 },
                 "ls" => {
                     let curdir = root.get_by_path(path.clone()).unwrap();
-                    while lineiter.peek().is_some() && lineiter.peek().unwrap().starts_with('$') {
+                    while lineiter.peek().is_some() && !lineiter.peek().unwrap().starts_with('$') {
                         let line = lineiter.next().unwrap();
                         let parts: Vec<&str> = line.split_whitespace().collect();
                         match parts[0] {
@@ -108,19 +107,45 @@ impl Element {
     }
 }
 
+fn get_sizes(e: &Element) -> Vec<(String, u64)> {
+    let mut out = Vec::new();
+    match e {
+        Element::File { name: _, size: _ } => {}
+        Element::Directory { name, elements } => {
+            let size = e.get_size();
+            out.push((name.clone(), size));
+            for e in elements {
+                out.append(&mut get_sizes(e));
+            }
+        }
+    }
+    out
+}
+
 pub fn run_1() {
     let lines = read_file_to_lines("src/day_07.input");
     let root = Element::parse_from_string(lines);
-    println!("{:?}", root);
+    let sizes = get_sizes(&root);
+    println!(
+        "{}",
+        sizes
+            .iter()
+            .map(|(_, e)| e)
+            .filter(|e| e < &&100000)
+            .sum::<u64>()
+    );
 }
 
-pub fn run_2() {}
-
-#[cfg(test)]
-mod tests {
-    // Note this useful idiom: importing names from outer (for mod tests) scope.
-    use super::*;
-
-    #[test]
-    fn test_overlaps() {}
+pub fn run_2() {
+    let lines = read_file_to_lines("src/day_07.input");
+    let root = Element::parse_from_string(lines);
+    let sizes = get_sizes(&root);
+    let needed_free_size = 30000000 - (70000000 - root.get_size());
+    let best = sizes
+        .iter()
+        .filter(|(_, s)| s >= &needed_free_size)
+        .sorted_by(|a, b| Ord::cmp(&a.1, &b.1))
+        .next()
+        .unwrap();
+    println!("{:?}", best);
 }
