@@ -8,6 +8,7 @@ mod day_04;
 mod day_05;
 mod day_06;
 mod day_07;
+mod day_08;
 
 fn main() {
     let args: Vec<String> = args().collect();
@@ -26,6 +27,8 @@ fn main() {
         "day06_2" => day_06::run_2(),
         "day07_1" => day_07::run_1(),
         "day07_2" => day_07::run_2(),
+        "day08_1" => day_08::run_1(),
+        "day08_2" => day_08::run_2(),
         _ => panic!("nope"),
     }
 }
