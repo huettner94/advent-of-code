@@ -39,7 +39,7 @@ impl Stacks {
 }
 
 pub fn run_1() {
-    let lines = read_file_to_lines("src/day_05.input");
+    let lines = read_file_to_lines("src/y2022/day_05.input");
     let (header, body) = lines.split_at(lines.iter().position(|e| e.is_empty()).unwrap());
     let mut stacks = Stacks::parse_headers(header);
     for line in body {
@@ -59,7 +59,7 @@ pub fn run_1() {
 }
 
 pub fn run_2() {
-    let lines = read_file_to_lines("src/day_05.input");
+    let lines = read_file_to_lines("src/y2022/day_05.input");
     let (header, body) = lines.split_at(lines.iter().position(|e| e.is_empty()).unwrap());
     let mut stacks = Stacks::parse_headers(header);
     for line in body {

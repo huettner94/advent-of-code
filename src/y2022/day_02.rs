@@ -86,7 +86,7 @@ impl Choice {
 }
 
 pub fn run_1() {
-    let lines = read_file_to_lines("src/day_02.input");
+    let lines = read_file_to_lines("src/y2022/day_02.input");
     let mut score = 0;
     for line in lines {
         let parts: Vec<&str> = line.split(' ').collect();
@@ -103,7 +103,7 @@ pub fn run_1() {
 }
 
 pub fn run_2() {
-    let lines = read_file_to_lines("src/day_02.input");
+    let lines = read_file_to_lines("src/y2022/day_02.input");
     let mut score = 0;
     for line in lines {
         let parts: Vec<&str> = line.split(' ').collect();

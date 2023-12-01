@@ -197,13 +197,13 @@ impl Trees {
 }
 
 pub fn run_1() {
-    let lines = read_file_to_lines("src/day_08.input");
+    let lines = read_file_to_lines("src/y2022/day_08.input");
     let trees = Trees::from_lines(&lines);
     println!("{:?}", trees.count_visible());
 }
 
 pub fn run_2() {
-    let lines = read_file_to_lines("src/day_08.input");
+    let lines = read_file_to_lines("src/y2022/day_08.input");
     let trees = Trees::from_lines(&lines);
     //println!("{}", trees.get_scenic_score(trees.data.len() - 1, 0));
     println!("{:?}", trees.get_max_scenic_score());

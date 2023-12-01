@@ -12,7 +12,7 @@ fn to_prio(c: &char) -> i32 {
 }
 
 pub fn run_1() {
-    let lines = read_file_to_lines("src/day_03.input");
+    let lines = read_file_to_lines("src/y2022/day_03.input");
     let mut elems: Vec<char> = Vec::new();
     for line in lines {
         let (p1, p2) = line.split_at(line.len() / 2);
@@ -26,7 +26,7 @@ pub fn run_1() {
 }
 
 pub fn run_2() {
-    let lines = read_file_to_lines("src/day_03.input");
+    let lines = read_file_to_lines("src/y2022/day_03.input");
     let mut elems: Vec<char> = Vec::new();
     for i in (0..lines.len()).step_by(3) {
         let s1: HashSet<char> = lines[i].chars().collect();

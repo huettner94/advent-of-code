@@ -1,7 +1,7 @@
 use crate::common::read_file_to_lines;
 
 pub fn run_1() {
-    let lines = read_file_to_lines("src/day_01.input");
+    let lines = read_file_to_lines("src/y2022/day_01.input");
     let mut max = 0;
     let mut accum = 0;
     for line in lines {
@@ -18,7 +18,7 @@ pub fn run_1() {
 }
 
 pub fn run_2() {
-    let lines = read_file_to_lines("src/day_01.input");
+    let lines = read_file_to_lines("src/y2022/day_01.input");
     let mut cal_per_elf: Vec<i32> = Vec::new();
     let mut accum = 0;
     for line in lines {

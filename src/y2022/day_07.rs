@@ -123,7 +123,7 @@ fn get_sizes(e: &Element) -> Vec<(String, u64)> {
 }
 
 pub fn run_1() {
-    let lines = read_file_to_lines("src/day_07.input");
+    let lines = read_file_to_lines("src/y2022/day_07.input");
     let root = Element::parse_from_string(lines);
     let sizes = get_sizes(&root);
     println!(
@@ -137,7 +137,7 @@ pub fn run_1() {
 }
 
 pub fn run_2() {
-    let lines = read_file_to_lines("src/day_07.input");
+    let lines = read_file_to_lines("src/y2022/day_07.input");
     let root = Element::parse_from_string(lines);
     let sizes = get_sizes(&root);
     let needed_free_size = 30000000 - (70000000 - root.get_size());

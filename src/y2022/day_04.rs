@@ -33,7 +33,7 @@ impl Range {
 }
 
 pub fn run_1() {
-    let lines = read_file_to_lines("src/day_04.input");
+    let lines = read_file_to_lines("src/y2022/day_04.input");
     let mut count = 0;
     for line in lines {
         let (p1, p2) = line.split_once(',').unwrap();
@@ -47,7 +47,7 @@ pub fn run_1() {
 }
 
 pub fn run_2() {
-    let lines = read_file_to_lines("src/day_04.input");
+    let lines = read_file_to_lines("src/y2022/day_04.input");
     let mut count = 0;
     for line in lines {
         let (p1, p2) = line.split_once(',').unwrap();
