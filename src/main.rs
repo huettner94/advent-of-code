@@ -29,6 +29,8 @@ fn main() {
         "2023" => match &args[2][..] {
             "day01_1" => y2023::day_01::run_1(),
             "day01_2" => y2023::day_01::run_2(),
+            "day02_1" => y2023::day_02::run_1(),
+            "day02_2" => y2023::day_02::run_2(),
             _ => panic!("nope"),
         },
         _ => panic!("nope"),
