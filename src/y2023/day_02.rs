@@ -9,7 +9,7 @@ struct Cubes {
 
 struct Game {
     pub id: i32,
-    pub rounds: Vec<Cubes>
+    pub rounds: Vec<Cubes>,
 }
 
 fn load() -> Vec<Game> {
@@ -21,24 +21,27 @@ fn load() -> Vec<Game> {
         }
         let (game, rounds) = line.split_once(':').unwrap();
         let gameid = game.split_once(' ').unwrap().1.parse::<i32>().unwrap();
-        let rounds: Vec<Cubes> = rounds.split("; ").map(|round| {
-            let elem = round.split(", ");
-            let mut red = 0;
-            let mut green = 0;
-            let mut blue = 0;
-            for e in elem {
-                let (count, color) = e.trim().split_once(' ').unwrap();
-                let count = count.parse::<i32>().unwrap();
-                match color {
-                    "red" => red = count,
-                    "green" => green = count,
-                    "blue" => blue = count,
-                    _ => panic!()
+        let rounds: Vec<Cubes> = rounds
+            .split("; ")
+            .map(|round| {
+                let elem = round.split(", ");
+                let mut red = 0;
+                let mut green = 0;
+                let mut blue = 0;
+                for e in elem {
+                    let (count, color) = e.trim().split_once(' ').unwrap();
+                    let count = count.parse::<i32>().unwrap();
+                    match color {
+                        "red" => red = count,
+                        "green" => green = count,
+                        "blue" => blue = count,
+                        _ => panic!(),
+                    }
                 }
-            }
-            Cubes{red, green, blue}
-        }).collect();
-        out.push(Game{id: gameid, rounds});
+                Cubes { red, green, blue }
+            })
+            .collect();
+        out.push(Game { id: gameid, rounds });
     }
     out
 }
