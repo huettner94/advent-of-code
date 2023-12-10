@@ -294,10 +294,7 @@ pub fn run_2() {
         sum += num_pos
             .drain()
             .map(|e| e.string_right_matching(char::is_numeric))
-            .map(|s| {
-                println!("123 {}", s);
-                s.parse::<i32>().unwrap()
-            })
+            .map(|s| s.parse::<i32>().unwrap())
             .reduce(|acc, e| if acc == 0 { e } else { acc * e })
             .unwrap();
     }
