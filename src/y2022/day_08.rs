@@ -122,7 +122,7 @@ impl Trees {
     }
 
     fn get_scenic_score(&self, x: usize, y: usize) -> u64 {
-        let mut score: u64 = 0;
+        let mut score: u64;
         let mut dir_score: u64 = 0;
         let self_size = self.data[x][y];
         for i in (0..y).rev() {
