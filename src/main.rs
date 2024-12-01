@@ -3,6 +3,7 @@ use std::env::args;
 mod common;
 mod y2022;
 mod y2023;
+mod y2024;
 
 fn main() {
     let args: Vec<String> = args().collect();
@@ -33,6 +34,11 @@ fn main() {
             "day02_2" => y2023::day_02::run_2(),
             "day03_1" => y2023::day_03::run_1(),
             "day03_2" => y2023::day_03::run_2(),
+            _ => panic!("nope"),
+        },
+        "2024" => match &args[2][..] {
+            "day01_1" => y2024::day_01::run_1(),
+            "day01_2" => y2024::day_01::run_2(),
             _ => panic!("nope"),
         },
         _ => panic!("nope"),
